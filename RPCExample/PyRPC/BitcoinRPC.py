@@ -1,8 +1,8 @@
 import json
 import requests
 
-rpc_user = 'testnode'
-rpc_password = 'testnode123'
+rpc_user = 'somename'
+rpc_password = 'somepassword'
 rpc_port = 8332
 
 auth = requests.auth.HTTPBasicAuth(rpc_user, rpc_password)
