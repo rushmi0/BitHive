@@ -3,6 +3,12 @@ import requests
 
 rpc_user = 'somename'
 rpc_password = 'somepassword'
+
+""" JSON-RPC connections on <port> """
+# default: 8332
+# testnet: 18332
+# signet: 38332
+# regtest: 18443
 rpc_port = 8332
 
 auth = requests.auth.HTTPBasicAuth(rpc_user, rpc_password)
