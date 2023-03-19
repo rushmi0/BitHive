@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import time
 import json
 import requests
 
@@ -27,16 +28,21 @@ payload = {
     'id': 0,
 }
 
-response = requests.post(url, data=json.dumps(payload), headers=headers, auth=auth)
+while True:
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    time.sleep(1)
+    response = requests.post(url, data=json.dumps(payload), headers=headers, auth=auth)
 
-if response.status_code != 200:
-    print(f"HTTP Error: {response.status_code}")
-else:
-    try:
-        result = response.json()['result']
-        if result is None:
-            print("Result is null")
-        else:
-            print('Block Height : %s ' % (result))
-    except json.decoder.JSONDecodeError as e:
-        print(f"JSON Error: {e}")
+    if response.status_code != 200:
+        print(f"HTTP Error: {response.status_code}")
+    else:
+        try:
+            result = response.json()['result']
+            if result is None:
+                print("Result is null")
+            else:
+                print(current_time + ' | Current Block : %s ' % (result))
+
+        except json.decoder.JSONDecodeError as e:
+            print(f"JSON Error: {e}")
